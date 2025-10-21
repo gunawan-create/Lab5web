@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validasi Form Pendaftaran</title>
+    <script>
+        function validasi() {
+            var nama = document.forms["formPendaftaran"]["nama"].value;
+            var email = document.forms["formPendaftaran"]["email"].value;
+            var usia = document.forms["formPendaftaran"]["usia"].value;
+            var password = document.forms["formPendaftaran"]["password"].value;
+
+            if (nama == "") {
+                alert("Nama tidak boleh kosong!");
+                return false;
+            }
+
+            if (email == "") {
+                alert("Email tidak boleh kosong!");
+                return false;
+            }
+            if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+                alert("Format email tidak valid!");
+                return false;
+            }
+
+            if (usia == "" || isNaN(usia)) {
+                alert("Usia harus berupa angka!");
+                return false;
+            }
+            if (usia < 17) {
+                alert("Usia minimal 17 tahun!");
+                return false;
+            }
+
+            if (password == "") {
+                alert("Password tidak boleh kosong!");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password minimal 6 karakter!");
+                return false;
+            }
+
+            alert("Pendaftaran berhasil!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Form Pendaftaran</h2>
+    <form name="formPendaftaran" onsubmit="return validasi()">
+        <p>Nama: <input type="text" name="nama"></p>
+        <p>Email: <input type="text" name="email"></p>
+        <p>Usia: <input type="text" name="usia"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <p><input type="submit" value="Daftar"></p>
+    </form>
+</body>
+</html>
